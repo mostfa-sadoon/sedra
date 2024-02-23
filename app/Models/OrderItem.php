@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class OrderItem extends Model
+{
+    use HasFactory;
+    protected $table='order_items';
+    public $guarded=[];
+    public function product()
+    {
+        return $this->belongsTo(Product::class , 'product_id' , 'id')->withTrashed();
+    }
+
+    // public function scopeActive($query)
+    // {
+    //     return $query->whereHas('product', function ($query) {
+    //          $query->withTrashed()->get(); // Only include ChildModel records with non-deleted ParentModel records.
+
+    //     });
+    // }
+}
